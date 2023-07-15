@@ -1,6 +1,8 @@
-# 1-Click Droplet Packer Build templates
+# 1-Click Droplet Packer Build template for rendering vector tiles
 
-These are the Packer build templates for DigitalOcean Marketplace 1-clicks.
+This is a special-purpose Packer build template included in the [dwightgunning/dwightgunning.com](https://github.com/dwightgunning/dwightgunning.com/) project.
+
+It was generated from the Packer build scripts for [DigitalOcean Marketplace 1-clicks](https://github.com/digitalocean/droplet-1-clicks) project.
 
 ## Prereqs
 
@@ -12,18 +14,18 @@ These are the Packer build templates for DigitalOcean Marketplace 1-clicks.
 [Packer](https://www.packer.io/intro/index.html) is a tool for creating images from a single source configuration. Using this Packer template reduces the entire process of creating, configuring, validating, and snapshotting a build Droplet to a single command:
 
 ```sh
-make build-{{image-name}}
+make build-docker-make-python-awscli-22-04
 ```
 
 The Packer build command can also be run manually.
 
 ```sh
-packer build {{image-name}}/template.json
+packer build docker-make-python-awscli-22-04/template.json
 ```
 
 ### Usage
 
-To run the Packer build that this template uses by default, you'll need to [install Packer](https://www.packer.io/intro/getting-started/install.html) and [create a DigitalOcean personal access token](https://docs.digitalocean.com/reference/api/create-personal-access-token/) and set it to the `DIGITALOCEAN_API_TOKEN` environment variable. Running `packer build {{image-name}}/template.json` without any other modifications will create a build Droplet configured with that 1-Click, clean it, power it down, and snapshot it.
+To run the Packer build that this template uses by default, you'll need to [install Packer](https://www.packer.io/intro/getting-started/install.html) and [create a DigitalOcean personal access token](https://docs.digitalocean.com/reference/api/create-personal-access-token/) and set it to the `DIGITALOCEAN_API_TOKEN` environment variable. Running `packer build docker-make-python-awscli-22-04/template.json` without any other modifications will create a build Droplet configured with that 1-Click, clean it, power it down, and snapshot it.
 
 > ⚠️ The image validation script in `common/scripts/999-img_check.sh` is copied from the [marketplace-partners repo](https://github.com/digitalocean/marketplace-partners). The marketplace-partners repo is the script's canonical source, so make sure you're using the latest version from there. Update it by running `make update-scripts`.
 
@@ -55,7 +57,7 @@ This configuration also uses Packer's [shell provisioner](https://www.packer.io/
 After making changes to the configuration, run the packer validate command.
 
 ```sh
-make validate-{{image-name}}
+make validate-docker-make-python-awscli-22-04
 ```
 
 Learn more about using Packer in [the official Packer documentation](https://www.packer.io/docs/index.html).
@@ -67,21 +69,23 @@ Learn more about using Packer in [the official Packer documentation](https://www
 Get additional log information by setting the `PACKER_LOG` environment variable to any value other than "".
 
 ```sh
-PACKER_LOG=1 packer build {{image-name}}/template.json
+PACKER_LOG=1 packer build docker-make-python-awscli-22-04/template.json
 ```
 
 Add the `-debug` flag to prompt the user to continue at every Packer build step. The `-debug` flag also generates a .pem file that can be used to ssh into the droplet to inspect the current state.
 
 ```sh
-packer build -debug {{image-name}}/template.json
+packer build -debug docker-make-python-awscli-22-04/template.json
 ```
 
 Add the `-on-error=ask` flag. When the build fails, it will prompt the user to either retry, cleanup, or abort the build.
 
 ```sh
-packer build -on-error=ask {{image-name}}/template.json
+packer build -on-error=ask docker-make-python-awscli-22-04/template.json
 ```
 
-## Notes
+## Copyright and license information
 
-* MySQL and phpMyAdmin use the same files and build script. They have separate template.json files to set different image names and application tag info.
+Copyright (c) 2023 Dwight Gunning. All rights reserved.
+
+This project includes open source software with its own copyright and licensing terms. See the file [LICENSE](LICENSE) for information on the history of this software, terms & conditions for usage, and a DISCLAIMER OF ALL WARRANTIES.
