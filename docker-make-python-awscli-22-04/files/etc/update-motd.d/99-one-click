@@ -6,7 +6,12 @@ myip=$(hostname -I | awk '{print$1}')
 cat <<EOF
 ********************************************************************************
 
-Welcome to DigitalOcean's 1-Click Docker Droplet.
+Welcome to the 1-Click Docker Droplet that's used to render vector tiles
+found on https://www.dwightgunning.com
+
+It extends DigitalOcean's 1-Click Docker Droplet with a few
+extra system packages.
+
 To keep this Droplet secure, the UFW firewall is enabled.
 All ports are BLOCKED except 22 (SSH), 2375 (Docker) and 2376 (Docker).
 
