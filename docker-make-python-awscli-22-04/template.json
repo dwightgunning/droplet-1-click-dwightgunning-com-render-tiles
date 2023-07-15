@@ -1,9 +1,9 @@
 {
   "variables": {
     "do_api_token": "{{env `DIGITALOCEAN_API_TOKEN`}}",
-    "image_name": "make-docker-22-04-snapshot-{{timestamp}}",
-    "apt_packages": "apt-transport-https ca-certificates curl jq linux-image-extra-virtual make python3 software-properties-common",
-    "application_name": "Docker+Make+Python",
+    "image_name": "docker-make-python-awscli-22-04-snapshot-{{timestamp}}",
+    "apt_packages": "apt-transport-https awscli ca-certificates curl jq linux-image-extra-virtual make python3 python3-pip software-properties-common",
+    "application_name": "Docker+Make+Python+AWSCLI",
     "application_version": "23.0.6",
     "docker_compose_version": "v2.17.2"
   },
@@ -35,7 +35,7 @@
     },
     {
       "type": "file",
-      "source": "docker-make-python-22-04/files/etc/",
+      "source": "docker-make-python-awscli-22-04/files/etc/",
       "destination": "/etc/"
     },
     {
